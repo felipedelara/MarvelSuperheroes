@@ -18,11 +18,12 @@ protocol ListingPresenterToViewInterface : class{
     func updateViewWithData()
 }
 
-protocol ListingPresenterToInteractorInterface {
-    func fetchHeroList(page:Int)
-}
-
-protocol ListingInteractorToPresenterInterface{
-    func didFetchHeroes(heroes: [String])
-    func didFailFetchingHeroes(error: Error)
-}
+//
+//protocol ListingPresenterToInteractorInterface {
+//    func fetchHeroList(page:Int)
+//}
+//
+//protocol ListingInteractorToPresenterInterface{
+//    func didFetchHeroes(heroes: [String])
+//    func didFailFetchingHeroes(error: Error)
+//}
