@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="C8Z-6U-RKo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qeK-EK-EDW">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -7,20 +7,82 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Hero Listing View Controller-->
+        <!--Super Heroes-->
         <scene sceneID="Deb-sY-WqZ">
             <objects>
-                <viewController id="C8Z-6U-RKo" customClass="HeroListingViewController" customModule="MarvelSuperHeroes" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Super Heroes" id="C8Z-6U-RKo" customClass="HeroListingViewController" customModule="MarvelSuperHeroes" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fHY-pP-1VN">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ac1-B8-lSS">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeroTableViewCell" rowHeight="99" id="Q1F-ox-x5f" customClass="HeroTableViewCell" customModule="MarvelSuperHeroes" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="99"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Q1F-ox-x5f" id="bMX-fo-rN8">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dS0-Bj-RYY">
+                                                    <rect key="frame" x="36" y="39" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="dS0-Bj-RYY" firstAttribute="leading" secondItem="bMX-fo-rN8" secondAttribute="leadingMargin" constant="16" id="YwB-DG-ynH"/>
+                                                <constraint firstItem="dS0-Bj-RYY" firstAttribute="centerY" secondItem="bMX-fo-rN8" secondAttribute="centerY" id="adg-3I-nxB"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="nameLabel" destination="dS0-Bj-RYY" id="7YA-cI-dJT"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ac1-B8-lSS" firstAttribute="top" secondItem="tFW-za-vca" secondAttribute="top" id="42Q-LW-qT9"/>
+                            <constraint firstItem="tFW-za-vca" firstAttribute="trailing" secondItem="ac1-B8-lSS" secondAttribute="trailing" id="dM0-Qe-EJv"/>
+                            <constraint firstItem="ac1-B8-lSS" firstAttribute="leading" secondItem="tFW-za-vca" secondAttribute="leading" id="mAH-bM-li0"/>
+                            <constraint firstItem="tFW-za-vca" firstAttribute="bottom" secondItem="ac1-B8-lSS" secondAttribute="bottom" id="uKL-Et-Efp"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="tFW-za-vca"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Super Heroes" id="geH-Ov-zju">
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="59i-11-HvU"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
+                    <connections>
+                        <outlet property="tableView" destination="ac1-B8-lSS" id="p3G-ag-nvW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXr-Cl-XhU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-464" y="13"/>
+            <point key="canvasLocation" x="444.92753623188412" y="12.723214285714285"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="OAk-xp-crG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qeK-EK-EDW" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Oca-y3-L6v">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="C8Z-6U-RKo" kind="relationship" relationship="rootViewController" id="0hO-pm-iKv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QAq-Ur-AwC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-465.21739130434787" y="12.723214285714285"/>
         </scene>
     </scenes>
 </document>

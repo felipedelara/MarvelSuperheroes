@@ -12,7 +12,9 @@ protocol HeroListingViewInterface : class {
     //Presenter to View
     func showLoading()
     func hideLoading()
-    func updateViewWithData()
+    func updateViewWithData(heroes: [Hero])
+    func alert(title: String, message: String, completion: @escaping ()->Void)
+
 }
 
 protocol HeroListingPresenterInterface : class {

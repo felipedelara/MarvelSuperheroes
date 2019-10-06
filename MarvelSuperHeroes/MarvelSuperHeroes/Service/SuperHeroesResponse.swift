@@ -118,6 +118,8 @@ extension DataClass {
 }
 
 // MARK: - Result
+typealias Hero = Result
+
 struct Result: Codable {
     let id: Int?
     let name, resultDescription: String?

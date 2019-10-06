@@ -10,7 +10,7 @@ import Foundation
 
 final class HeroListingPresenter{
     
-    weak private var view: HeroListingViewInterface?
+    unowned private var view: HeroListingViewInterface
     
     init(view: HeroListingViewInterface) {
         self.view = view
@@ -19,8 +19,19 @@ final class HeroListingPresenter{
 
 extension HeroListingPresenter: HeroListingPresenterInterface{
     func viewDidFinishLoading() {
-        //
+        //Ready to load some data
+        self.view.showLoading()
+        SuperHeroesService.fetchSuperHeroes { (response, error) in
+            DispatchQueue.main.async { [unowned self] in
+                guard let response = response,
+                    let data = response.data,
+                    let results = data.results else{
+                        self.view.hideLoading()
+                        self.view.alert(title: "Error", message: "Could not load data", completion: {})
+                        return
+                }
+                self.view.updateViewWithData(heroes: results)
+            }
+        }
     }
-    
-
 }
