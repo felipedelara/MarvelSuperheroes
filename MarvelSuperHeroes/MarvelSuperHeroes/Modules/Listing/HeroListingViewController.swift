@@ -8,25 +8,31 @@
 
 import UIKit
 
-class HeroListingViewController: UIViewController {
+final class HeroListingViewController: UIViewController {
 
-    
+    private lazy var presenter : HeroListingPresenter = { [unowned self ] in
+        return HeroListingPresenter(view: self)
+     }()
+
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.presenter.viewDidFinishLoading()
+    }
+}
 
-        // Do any additional setup after loading the view.
+extension HeroListingViewController : HeroListingViewInterface{
+    func showLoading() {
+        //
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func hideLoading() {
+        //
     }
-    */
-
+    
+    func updateViewWithData() {
+        //
+    }
+    
 }

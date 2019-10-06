@@ -7,3 +7,20 @@
 //
 
 import Foundation
+
+final class HeroListingPresenter{
+    
+    weak private var view: HeroListingViewInterface?
+    
+    init(view: HeroListingViewInterface) {
+        self.view = view
+    }
+}
+
+extension HeroListingPresenter: HeroListingPresenterInterface{
+    func viewDidFinishLoading() {
+        //
+    }
+    
+
+}
