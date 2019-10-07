@@ -13,16 +13,30 @@ final class HeroListingViewController: UIViewController {
     private lazy var presenter : HeroListingPresenter = { [unowned self] in
         return HeroListingPresenter(view: self)
         }()
-    @IBOutlet weak var tableView: UITableView!
     
+    private lazy var activityIndicator: UIActivityIndicatorView = { [unowned self] in
+        var indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        indicator.center = self.view.center
+        indicator.hidesWhenStopped = true
+        indicator.isHidden = true
+        self.view.addSubview(indicator)
+        return indicator
+    }()
+    
+    @IBOutlet weak var tableView: UITableView!
+
     private var heroes : [Hero] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+
         self.presenter.viewDidFinishLoading()
     }
+   
 }
 
 extension HeroListingViewController : HeroListingViewInterface{
@@ -36,12 +50,17 @@ extension HeroListingViewController : HeroListingViewInterface{
     }
     
     func showLoading() {
-        //
         print("I should start loading data")
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = false
+            self.activityIndicator.startAnimating()
+        }
     }
     
     func hideLoading() {
-        //
+        DispatchQueue.main.async {
+            self.activityIndicator.stopAnimating()
+        }
     }
     
 }

@@ -17,7 +17,7 @@ enum ServiceError : Error{
 
 
 class SuperHeroesService{
-    static func fetchSuperHeroes(onCompletion : @escaping (SuperHeroesResponse?, ServiceError?) -> Void){
+    static func fetchSuperHeroes(offset: Int, onCompletion : @escaping (SuperHeroesResponse?, ServiceError?) -> Void){
         let ts = Date().toMillis()
         let apiKey = "fb620164db72040935834ad11d1529a7"
         let privateKey = "ff101cbd6fac69f3f260575202d3dcfa337e6264"
@@ -27,7 +27,7 @@ class SuperHeroesService{
         let hash = MD5(string: toHash)
         let md5Hex =  hash.map { String(format: "%02hhx", $0) }.joined()
         
-        let request = NSMutableURLRequest(url: NSURL(string: "https://gateway.marvel.com:443/v1/public/characters?ts=\(ts)&apikey=\(apiKey)&hash=\(md5Hex)")! as URL,
+        let request = NSMutableURLRequest(url: NSURL(string: "https://gateway.marvel.com:443/v1/public/characters?ts=\(ts)&apikey=\(apiKey)&hash=\(md5Hex)&offset=\(offset)")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)
         request.httpMethod = "GET"
