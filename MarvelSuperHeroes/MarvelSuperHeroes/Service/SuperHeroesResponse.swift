@@ -126,9 +126,7 @@ struct Result: Codable {
     let modified: Date?
     let thumbnail: Thumbnail?
     let resourceURI: String?
-    let comics, series: Comics?
-    let stories: Stories?
-    let events: Comics?
+    let comics, series, stories, events: Appearances?
     let urls: [URLElement]?
 
     enum CodingKeys: String, CodingKey {
@@ -163,10 +161,10 @@ extension Result {
         modified: Date?? = nil,
         thumbnail: Thumbnail?? = nil,
         resourceURI: String?? = nil,
-        comics: Comics?? = nil,
-        series: Comics?? = nil,
-        stories: Stories?? = nil,
-        events: Comics?? = nil,
+        comics: Appearances?? = nil,
+        series: Appearances?? = nil,
+        stories: Appearances?? = nil,
+        events: Appearances?? = nil,
         urls: [URLElement]?? = nil
     ) -> Result {
         return Result(
@@ -194,18 +192,18 @@ extension Result {
 }
 
 // MARK: - Comics
-struct Comics: Codable {
+struct Appearances: Codable {
     let available: Int?
     let collectionURI: String?
-    let items: [ComicsItem]?
+    let items: [AppearanceItem]?
     let returned: Int?
 }
 
 // MARK: Comics convenience initializers and mutators
 
-extension Comics {
+extension Appearances {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(Comics.self, from: data)
+        self = try newJSONDecoder().decode(Appearances.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -222,10 +220,10 @@ extension Comics {
     func with(
         available: Int?? = nil,
         collectionURI: String?? = nil,
-        items: [ComicsItem]?? = nil,
+        items: [AppearanceItem]?? = nil,
         returned: Int?? = nil
-    ) -> Comics {
-        return Comics(
+    ) -> Appearances {
+        return Appearances(
             available: available ?? self.available,
             collectionURI: collectionURI ?? self.collectionURI,
             items: items ?? self.items,
@@ -243,16 +241,16 @@ extension Comics {
 }
 
 // MARK: - ComicsItem
-struct ComicsItem: Codable {
+struct AppearanceItem: Codable {
     let resourceURI: String?
     let name: String?
 }
 
 // MARK: ComicsItem convenience initializers and mutators
 
-extension ComicsItem {
+extension AppearanceItem {
     init(data: Data) throws {
-        self = try newJSONDecoder().decode(ComicsItem.self, from: data)
+        self = try newJSONDecoder().decode(AppearanceItem.self, from: data)
     }
 
     init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -269,8 +267,8 @@ extension ComicsItem {
     func with(
         resourceURI: String?? = nil,
         name: String?? = nil
-    ) -> ComicsItem {
-        return ComicsItem(
+    ) -> AppearanceItem {
+        return AppearanceItem(
             resourceURI: resourceURI ?? self.resourceURI,
             name: name ?? self.name
         )

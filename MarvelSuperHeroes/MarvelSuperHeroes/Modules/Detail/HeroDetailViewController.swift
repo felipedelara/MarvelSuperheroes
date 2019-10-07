@@ -27,10 +27,37 @@ class HeroDetailViewController: UIViewController {
         super.viewDidLoad()
 
         nameLabel.text = hero?.name
-        let comics = hero?.comics?.items?.map{"\($0.name!)"}.reduce(""){$0+"\n"+$1}
-        let events = hero?.events?.items?.map{"\($0.name!)"}.reduce(""){$0+"\n"+$1}
         
-        let detail = "Comics: \(comics!)\n\nEvents:\(events!)"
-        detailsTextView.text = detail
+        var details = ""
+        guard let hero = hero else{
+            return
+        }
+        if let comics = hero.comics{
+            details.append("\nComics: \(listFirst3(appearances: comics))\n")
+        }
+        if let events = hero.events{
+            details.append("\nEvents: \(listFirst3(appearances: events))\n")
+        }
+        if let stories = hero.stories{
+            details.append("\nStories: \(listFirst3(appearances: stories))\n")
+        }
+        if let series = hero.series{
+            details.append("\nSeries: \(listFirst3(appearances: series))\n")
+        }
+        detailsTextView.text = details
+    }
+    @IBAction func makeFavoriteButtonPressed(_ sender: Any) {
+    }
+    
+    
+    func listFirst3(appearances : Appearances) -> String{
+        guard let items = appearances.items, items.count >= 1 else{
+            return "No appearances for this category."
+        }
+        
+        let maxIndex = items.count - 1
+        let index = maxIndex < 2 ? maxIndex : 2
+        let resultString = items[0...index].map{"\($0.name ?? "no name")"}.reduce(""){$0+"\n"+$1}
+        return resultString
     }
 }
