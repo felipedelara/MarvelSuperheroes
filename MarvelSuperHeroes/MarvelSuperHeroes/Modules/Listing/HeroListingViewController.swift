@@ -14,14 +14,8 @@ final class HeroListingViewController: UIViewController {
         return HeroListingPresenter(view: self)
         }()
     
-    private lazy var activityIndicator: UIActivityIndicatorView = { [unowned self] in
-        var indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
-        indicator.center = self.view.center
-        indicator.hidesWhenStopped = true
-        indicator.isHidden = true
-        self.view.addSubview(indicator)
-        return indicator
-    }()
+    private var loadingView = UIView()
+    private var indicator = UIActivityIndicatorView()
     
     @IBOutlet weak var tableView: UITableView!
 
@@ -33,9 +27,27 @@ final class HeroListingViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
+        self.setupLoadingView()
         self.presenter.viewDidFinishLoading()
     }
    
+    func setupLoadingView(){
+        self.loadingView = UIView(frame: self.view.frame)
+        self.loadingView.backgroundColor = UIColor.white.withAlphaComponent(0.65)
+        self.loadingView.center = self.view.center
+        self.loadingView.isHidden = true
+        
+        
+        self.indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
+        
+        self.indicator.center = self.loadingView.center
+        self.indicator.isHidden = true
+        self.indicator.hidesWhenStopped = true
+        self.loadingView.addSubview(indicator)
+        
+        self.view.addSubview(loadingView)
+    }
+    
     @IBAction func loadMoreButtonPressed(_ sender: Any) {
         self.presenter.shouldLoadMore()
     }
@@ -48,23 +60,30 @@ extension HeroListingViewController : HeroListingViewInterface{
     }
     
     func alert(title: String, message: String, completion: @escaping () -> Void) {
-        //
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let action = UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { UIAlertAction in
+                completion()
+            }
+            alertController.addAction(action)
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     func showLoading() {
         print("I should start loading data")
         DispatchQueue.main.async {
-            self.activityIndicator.isHidden = false
-            self.activityIndicator.startAnimating()
+            self.loadingView.isHidden = false
+            self.indicator.startAnimating()
         }
     }
     
     func hideLoading() {
         DispatchQueue.main.async {
-            self.activityIndicator.stopAnimating()
+            self.loadingView.isHidden = true
+            self.indicator.stopAnimating()
         }
     }
-    
 }
 
 extension HeroListingViewController : UITableViewDataSource, UITableViewDelegate{

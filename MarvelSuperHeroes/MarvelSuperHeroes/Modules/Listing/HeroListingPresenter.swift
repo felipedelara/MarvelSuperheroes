@@ -38,9 +38,10 @@ extension HeroListingPresenter: HeroListingPresenterInterface{
                 guard let response = response,
                     let data = response.data,
                     let results = data.results else{
-                        self.view.alert(title: "Error", message: "Could not load data", completion: {})
+                        self.view.alert(title: "Whoops", message: "Could not load data. Please check your connection and try again.", completion: {})
                         return
                 }
+                
                 self.offset += results.count
                 self.heroes.append(contentsOf: results)
                 self.view.updateViewWithData(heroes: self.heroes)

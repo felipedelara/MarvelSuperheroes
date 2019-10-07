@@ -26,7 +26,7 @@ class SuperHeroesService{
         let toHash = "\(ts)\(privateKey)\(apiKey)"
         let hash = MD5(string: toHash)
         let md5Hex =  hash.map { String(format: "%02hhx", $0) }.joined()
-        print("https://gateway.marvel.com:443/v1/public/characters?ts=\(ts)&apikey=\(apiKey)&hash=\(md5Hex)&offset=\(offset)")
+
         let request = NSMutableURLRequest(url: NSURL(string: "https://gateway.marvel.com:443/v1/public/characters?ts=\(ts)&apikey=\(apiKey)&hash=\(md5Hex)&offset=\(offset)")! as URL,
                                                 cachePolicy: .useProtocolCachePolicy,
                                             timeoutInterval: 10.0)

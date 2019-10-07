@@ -72,9 +72,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tFW-za-vca"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Super Heroes" id="geH-Ov-zju">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="59i-11-HvU"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Super Heroes" id="geH-Ov-zju"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="tableView" destination="ac1-B8-lSS" id="p3G-ag-nvW"/>
