@@ -15,7 +15,6 @@ enum ServiceError : Error{
     case authenticationError
 }
 
-
 class SuperHeroesService{
     static func fetchSuperHeroes(offset: Int, onCompletion : @escaping (SuperHeroesResponse?, ServiceError?) -> Void){
         let ts = Date().toMillis()
@@ -44,10 +43,8 @@ class SuperHeroesService{
                 //Error
                 onCompletion(nil, ServiceError.decodeError)
                 return
-            }
-            
+            }            
             onCompletion(superHeroesResponse, nil)
-            
         })
 
         dataTask.resume()

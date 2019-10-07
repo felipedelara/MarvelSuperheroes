@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class HeroListingViewController: UIViewController {
+final class HeroListingViewController: UIViewController, UISearchControllerDelegate {
     
     private lazy var presenter : HeroListingPresenter = { [unowned self] in
         return HeroListingPresenter(view: self)
@@ -18,7 +18,7 @@ final class HeroListingViewController: UIViewController {
     private var indicator = UIActivityIndicatorView()
     
     @IBOutlet weak var tableView: UITableView!
-
+    
     private var heroes : [Hero] = []
 
     
@@ -30,7 +30,8 @@ final class HeroListingViewController: UIViewController {
         self.setupLoadingView()
         self.presenter.viewDidFinishLoading()
     }
-   
+
+    
     func setupLoadingView(){
         self.loadingView = UIView(frame: self.view.frame)
         self.loadingView.backgroundColor = UIColor.white.withAlphaComponent(0.65)
@@ -51,6 +52,15 @@ final class HeroListingViewController: UIViewController {
     @IBAction func loadMoreButtonPressed(_ sender: Any) {
         self.presenter.shouldLoadMore()
     }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        print("segue")
+//        if segue.identifier == "HeroDetail"{
+//            guard let vc = segue.destination as? HeroDetailViewController else{
+//                return
+//            }
+//            vc.hero = self.heroes.first
+//        }
+//    }
 }
 
 extension HeroListingViewController : HeroListingViewInterface{
@@ -102,5 +112,15 @@ extension HeroListingViewController : UITableViewDataSource, UITableViewDelegate
         cell.nameLabel.text = heroName
         
         return cell
+    }
+    
+     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         guard let hero = self.heroes[safe: indexPath.row],
+                   let heroName = hero.name else{
+                    return
+        }
+        print(heroName)
+        
+        self.showDetailViewController(HeroDetailViewController.create(hero: hero), sender: self)
     }
 }

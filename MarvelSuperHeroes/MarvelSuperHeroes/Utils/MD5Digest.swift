@@ -20,6 +20,7 @@ func MD5(string: String) -> Data {
         messageData.withUnsafeBytes { messageBytes -> UInt8 in
             if let messageBytesBaseAddress = messageBytes.baseAddress, let digestBytesBlindMemory = digestBytes.bindMemory(to: UInt8.self).baseAddress {
                 let messageLength = CC_LONG(messageData.count)
+                //No way out around MD5 due to API demand
                 CC_MD5(messageBytesBaseAddress, messageLength, digestBytesBlindMemory)
             }
             return 0
@@ -27,12 +28,3 @@ func MD5(string: String) -> Data {
     }
     return digestData
 }
-
-////Test:
-//let md5Data = MD5(string:"Hello")
-//
-//let md5Hex =  md5Data.map { String(format: "%02hhx", $0) }.joined()
-//print("md5Hex: \(md5Hex)")
-//
-//let md5Base64 = md5Data.base64EncodedString()
-//print("md5Base64: \(md5Base64)")
