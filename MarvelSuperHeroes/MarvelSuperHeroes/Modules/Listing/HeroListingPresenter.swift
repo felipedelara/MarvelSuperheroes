@@ -11,6 +11,7 @@ import Foundation
 final class HeroListingPresenter{
     
     unowned private var view: HeroListingViewInterface
+    private var heroes = [Hero]()
     private var offset = 0
     
     init(view: HeroListingViewInterface) {
@@ -19,8 +20,16 @@ final class HeroListingPresenter{
 }
 
 extension HeroListingPresenter: HeroListingPresenterInterface{
+    func shouldLoadMore() {
+        self.fetch()
+    }
+    
     func viewDidFinishLoading() {
         //Ready to load some data
+        self.fetch()
+    }
+    
+    func fetch(){
         self.view.showLoading()
         SuperHeroesService.fetchSuperHeroes(offset: offset, onCompletion: { (response, error) in
             DispatchQueue.main.async { [unowned self] in
@@ -33,8 +42,9 @@ extension HeroListingPresenter: HeroListingPresenterInterface{
                         return
                 }
                 self.offset += results.count
-                self.view.updateViewWithData(heroes: results)
+                self.heroes.append(contentsOf: results)
+                self.view.updateViewWithData(heroes: self.heroes)
             }
-        }
-)    }
+        })
+    }
 }

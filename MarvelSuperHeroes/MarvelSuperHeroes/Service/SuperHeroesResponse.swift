@@ -338,7 +338,7 @@ extension Stories {
 struct StoriesItem: Codable {
     let resourceURI: String?
     let name: String?
-    let type: ItemType?
+    let type: String?
 }
 
 // MARK: StoriesItem convenience initializers and mutators
@@ -362,7 +362,7 @@ extension StoriesItem {
     func with(
         resourceURI: String?? = nil,
         name: String?? = nil,
-        type: ItemType?? = nil
+        type: String?? = nil
     ) -> StoriesItem {
         return StoriesItem(
             resourceURI: resourceURI ?? self.resourceURI,
@@ -380,16 +380,11 @@ extension StoriesItem {
     }
 }
 
-enum ItemType: String, Codable {
-    case cover = "cover"
-    case empty = ""
-    case interiorStory = "interiorStory"
-}
 
 // MARK: - Thumbnail
 struct Thumbnail: Codable {
     let path: String?
-    let thumbnailExtension: Extension?
+    let thumbnailExtension: String?
 
     enum CodingKeys: String, CodingKey {
         case path
@@ -417,7 +412,7 @@ extension Thumbnail {
 
     func with(
         path: String?? = nil,
-        thumbnailExtension: Extension?? = nil
+        thumbnailExtension: String?? = nil
     ) -> Thumbnail {
         return Thumbnail(
             path: path ?? self.path,
@@ -434,14 +429,9 @@ extension Thumbnail {
     }
 }
 
-enum Extension: String, Codable {
-    case gif = "gif"
-    case jpg = "jpg"
-}
-
 // MARK: - URLElement
 struct URLElement: Codable {
-    let type: URLType?
+    let type: String?
     let url: String?
 }
 
@@ -464,7 +454,7 @@ extension URLElement {
     }
 
     func with(
-        type: URLType?? = nil,
+        type: String?? = nil,
         url: String?? = nil
     ) -> URLElement {
         return URLElement(
@@ -482,11 +472,6 @@ extension URLElement {
     }
 }
 
-enum URLType: String, Codable {
-    case comiclink = "comiclink"
-    case detail = "detail"
-    case wiki = "wiki"
-}
 
 // MARK: - Helper functions for creating encoders and decoders
 

@@ -33,10 +33,12 @@ final class HeroListingViewController: UIViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         
-
         self.presenter.viewDidFinishLoading()
     }
    
+    @IBAction func loadMoreButtonPressed(_ sender: Any) {
+        self.presenter.shouldLoadMore()
+    }
 }
 
 extension HeroListingViewController : HeroListingViewInterface{
@@ -82,6 +84,4 @@ extension HeroListingViewController : UITableViewDataSource, UITableViewDelegate
         
         return cell
     }
-    
-    
 }

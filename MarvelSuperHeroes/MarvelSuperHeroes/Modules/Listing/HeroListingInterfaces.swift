@@ -20,4 +20,5 @@ protocol HeroListingViewInterface : class {
 protocol HeroListingPresenterInterface : class {
     //View to Presenter
     func viewDidFinishLoading()
+    func shouldLoadMore()
 }

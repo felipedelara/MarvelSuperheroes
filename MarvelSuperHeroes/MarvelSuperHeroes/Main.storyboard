@@ -15,9 +15,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ac1-B8-lSS">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ac1-B8-lSS">
+                                <rect key="frame" x="0.0" y="17" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="MgC-DQ-yxG">
+                                    <rect key="frame" x="0.0" y="155" width="414" height="69"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vlp-jO-BFO">
+                                            <rect key="frame" x="170.5" y="19.5" width="73" height="30"/>
+                                            <state key="normal" title="Load More"/>
+                                            <connections>
+                                                <action selector="loadMoreButtonPressed:" destination="C8Z-6U-RKo" eventType="touchUpInside" id="M5o-4A-o2d"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstItem="vlp-jO-BFO" firstAttribute="centerY" secondItem="MgC-DQ-yxG" secondAttribute="centerY" id="jOR-Cr-qsa"/>
+                                        <constraint firstItem="vlp-jO-BFO" firstAttribute="centerX" secondItem="MgC-DQ-yxG" secondAttribute="centerX" id="r4R-Hb-lRQ"/>
+                                    </constraints>
+                                </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="HeroTableViewCell" rowHeight="99" id="Q1F-ox-x5f" customClass="HeroTableViewCell" customModule="MarvelSuperHeroes" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="99"/>
