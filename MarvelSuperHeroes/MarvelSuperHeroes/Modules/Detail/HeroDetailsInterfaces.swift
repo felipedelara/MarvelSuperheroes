@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol HeroDetailsViewInterface : class {
     //Presenter to View
     func updateViewWith(viewModel: HeroDetailViewModel)

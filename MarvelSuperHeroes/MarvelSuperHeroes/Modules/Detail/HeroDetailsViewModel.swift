@@ -17,9 +17,12 @@ struct HeroDetailViewModel{
         self.name = hero.name ?? "no name"
         
         var _details = ""
-        
+        if let description = hero.resultDescription,
+            description != ""{
+            _details.append("\(description)\n\n")
+        }
         if let comics = hero.comics{
-            _details.append("\nComics: \(HeroDetailViewModel.listFirst3(appearances: comics))\n")
+            _details.append("Comics: \(HeroDetailViewModel.listFirst3(appearances: comics))\n")
         }
         if let events = hero.events{
             _details.append("\nEvents: \(HeroDetailViewModel.listFirst3(appearances: events))\n")

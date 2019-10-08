@@ -10,6 +10,7 @@ import Foundation
 
 final class HeroDetailsPresenter{
     
+    // MARK: - Private properties
     unowned private var view: HeroDetailsViewInterface
     private var hero : Hero
     
@@ -19,6 +20,7 @@ final class HeroDetailsPresenter{
     }
 }
 
+// MARK: - Presenter Interface
 extension HeroDetailsPresenter : HeroDetailsPresenterInterface{
     func viewDidFinishLoading() {
         let favouriteHeroId = UserDefaults.standard.integer(forKey: "FavoriteHeroId")

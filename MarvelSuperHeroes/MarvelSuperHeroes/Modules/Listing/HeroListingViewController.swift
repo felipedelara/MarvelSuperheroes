@@ -10,18 +10,17 @@ import UIKit
 
 final class HeroListingViewController: UIViewController, UISearchControllerDelegate {
     
+    // MARK: - Private properties
     private lazy var presenter : HeroListingPresenter = { [unowned self] in
         return HeroListingPresenter(view: self)
         }()
-    
     private var loadingView = UIView()
     private var indicator = UIActivityIndicatorView()
-    
+    private var heroes : [Hero] = []
+    private let searchController = UISearchController(searchResultsController: nil)
     @IBOutlet weak var tableView: UITableView!
     
-    private var heroes : [Hero] = []
-    let searchController = UISearchController(searchResultsController: nil)
-    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
@@ -32,6 +31,7 @@ final class HeroListingViewController: UIViewController, UISearchControllerDeleg
         self.presenter.viewDidFinishLoading()
     }
     
+    // MARK: - Setups
     func setupLoadingView(){
         self.loadingView = UIView(frame: self.view.frame)
         self.loadingView.backgroundColor = UIColor.white.withAlphaComponent(0.65)
@@ -50,13 +50,14 @@ final class HeroListingViewController: UIViewController, UISearchControllerDeleg
     
     func setupSearchController(){
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Super Heroes"
+        searchController.searchBar.placeholder = "Search by name"
         navigationItem.searchController = searchController
         searchController.searchBar.delegate = self
-
+        
         definesPresentationContext = true
     }
     
+    // MARK: - Actions
     @IBAction func loadMoreButtonPressed(_ sender: Any) {
         self.presenter.shouldLoadMore()
     }
@@ -66,6 +67,7 @@ final class HeroListingViewController: UIViewController, UISearchControllerDeleg
     }
 }
 
+// MARK: - View Interface 
 extension HeroListingViewController : HeroListingViewInterface{
     func showDetail(hero: Hero) {
         self.showDetailViewController(HeroDetailsViewController.create(hero: hero), sender: self)
@@ -103,6 +105,7 @@ extension HeroListingViewController : HeroListingViewInterface{
     }
 }
 
+// MARK: - Table View
 extension HeroListingViewController : UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.heroes.count
@@ -122,20 +125,16 @@ extension HeroListingViewController : UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let hero = self.heroes[safe: indexPath.row] else{
-            return
-        }
-        self.showDetail(hero: hero)
+        self.presenter.userDidSelectRow(row: indexPath.row)
     }
 }
 
+// MARK: - SearchBar
 extension HeroListingViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("search button click")
         guard let text = searchBar.text else{
             return
         }
-        
         self.presenter.shouldSearchWithQuery(name: text)
     }
     

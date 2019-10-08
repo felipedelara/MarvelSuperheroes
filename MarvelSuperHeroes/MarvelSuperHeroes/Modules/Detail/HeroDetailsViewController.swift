@@ -9,17 +9,19 @@
 import UIKit
 
 class HeroDetailsViewController: UIViewController {
-
-    private var presenter : HeroDetailsPresenter?
     
+    // MARK: - Private properties
+    //Protocols
+    private var presenter : HeroDetailsPresenter?
+
+    //View components
     private var loadingView = UIView()
     private var indicator = UIActivityIndicatorView()
-    
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
     @IBOutlet weak var favouriteButton: UIButton!
     
-    
+    // MARK: - Lifecycle
     static func create(hero: Hero) -> HeroDetailsViewController {
         let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "HeroDetailViewController") as! HeroDetailsViewController
 
@@ -34,9 +36,11 @@ class HeroDetailsViewController: UIViewController {
     
     @IBAction func makeFavoriteButtonPressed(_ sender: Any) {
         self.presenter?.shouldMarkAsFavorite()
+        self.favouriteButton.isHidden = true
     }
 }
 
+// MARK: - Detail View Interface
 extension HeroDetailsViewController : HeroDetailsViewInterface{
     func updateViewWith(viewModel: HeroDetailViewModel) {
         self.nameLabel.text = viewModel.name

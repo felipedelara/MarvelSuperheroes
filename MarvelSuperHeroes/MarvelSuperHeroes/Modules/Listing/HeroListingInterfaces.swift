@@ -22,6 +22,7 @@ protocol HeroListingPresenterInterface : class {
     func viewDidFinishLoading()
     func shouldLoadMore()
     func showFavouriteRequested()
-    func shouldSearchWithQuery(name:String)
+    func shouldSearchWithQuery(name: String)
     func searchQueryCanceled()
+    func userDidSelectRow(row: Int)
 }
