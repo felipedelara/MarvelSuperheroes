@@ -12,6 +12,7 @@ class HeroDetailsViewController: UIViewController {
     
     // MARK: - Private properties
     //Protocols
+    //TODO: I don't want this to be an optional! VIPER's wireframe would have come handy 😅
     private var presenter : HeroDetailsPresenter?
 
     //View components

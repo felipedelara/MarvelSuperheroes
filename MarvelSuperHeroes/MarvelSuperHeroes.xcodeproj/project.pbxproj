@@ -34,6 +34,7 @@
 		E49600F7234C0868004F4C66 /* HeroDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600F6234C0868004F4C66 /* HeroDetailsViewController.swift */; };
 		E49600F8234C08E5004F4C66 /* HeroDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600F6234C0868004F4C66 /* HeroDetailsViewController.swift */; };
 		E49600F9234C094C004F4C66 /* HeroDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600F2234C067E004F4C66 /* HeroDetailsPresenter.swift */; };
+		E49600FB234C3C03004F4C66 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600FA234C3C03004F4C66 /* String.swift */; };
 		E49BD838234A953700C818E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E49BD837234A953700C818E5 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +72,7 @@
 		E49600F2234C067E004F4C66 /* HeroDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailsPresenter.swift; sourceTree = "<group>"; };
 		E49600F4234C071E004F4C66 /* HeroDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailsViewModel.swift; sourceTree = "<group>"; };
 		E49600F6234C0868004F4C66 /* HeroDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailsViewController.swift; sourceTree = "<group>"; };
+		E49600FA234C3C03004F4C66 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		E49BD837234A953700C818E5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -171,6 +173,7 @@
 			children = (
 				E47EA699234A7CA40087C6F3 /* Date.swift */,
 				E49600EA234AB10D004F4C66 /* Collection.swift */,
+				E49600FA234C3C03004F4C66 /* String.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				E47EA69D234A8E5E0087C6F3 /* SuperHeroesResponse.swift in Sources */,
 				E49600F3234C067E004F4C66 /* HeroDetailsPresenter.swift in Sources */,
 				E49600F7234C0868004F4C66 /* HeroDetailsViewController.swift in Sources */,
+				E49600FB234C3C03004F4C66 /* String.swift in Sources */,
 				E47EA695234A70050087C6F3 /* SuperHeroesService.swift in Sources */,
 				E49600E7234A9D3F004F4C66 /* HeroListingPresenter.swift in Sources */,
 			);

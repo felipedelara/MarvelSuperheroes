@@ -28,7 +28,7 @@ class SuperHeroesService{
 
         var extraParams = ""
         if let name = name{
-            extraParams = "&nameStartsWith=\(name)"
+            extraParams = "&nameStartsWith=\(name.filtered)"
         }
         
         let request = NSMutableURLRequest(url: NSURL(string: "https://gateway.marvel.com:443/v1/public/characters?ts=\(ts)&apikey=\(apiKey)&hash=\(md5Hex)&offset=\(offset)\(extraParams)")! as URL,
