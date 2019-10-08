@@ -73,7 +73,7 @@
                         <viewLayoutGuide key="safeArea" id="tFW-za-vca"/>
                     </view>
                     <navigationItem key="navigationItem" title="Super Heroes" id="geH-Ov-zju">
-                        <barButtonItem key="rightBarButtonItem" title="Show Favourite" image="star" catalog="system" style="plain" id="kdh-Vz-beH">
+                        <barButtonItem key="rightBarButtonItem" title="Show Favourite" image="star" catalog="system" style="done" id="kdh-Vz-beH">
                             <connections>
                                 <action selector="showFavouriteButtonPressed:" destination="C8Z-6U-RKo" id="csb-fS-6iu"/>
                             </connections>

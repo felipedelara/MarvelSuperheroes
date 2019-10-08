@@ -22,4 +22,6 @@ protocol HeroListingPresenterInterface : class {
     func viewDidFinishLoading()
     func shouldLoadMore()
     func showFavouriteRequested()
+    func shouldSearchWithQuery(name:String)
+    func searchQueryCanceled()
 }

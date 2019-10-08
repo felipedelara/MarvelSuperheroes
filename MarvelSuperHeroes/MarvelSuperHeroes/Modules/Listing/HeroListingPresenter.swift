@@ -13,6 +13,7 @@ final class HeroListingPresenter{
     unowned private var view: HeroListingViewInterface
     private var heroes = [Hero]()
     private var offset = 0
+    private var queryName : String? = nil
     
     init(view: HeroListingViewInterface) {
         self.view = view
@@ -20,6 +21,20 @@ final class HeroListingPresenter{
 }
 
 extension HeroListingPresenter: HeroListingPresenterInterface{
+    func searchQueryCanceled() {
+        self.offset = 0
+        self.queryName = nil
+        self.heroes.removeAll()
+        self.fetch()
+    }
+    
+    func shouldSearchWithQuery(name: String) {
+        self.offset = 0
+        self.queryName = name
+        self.heroes.removeAll()
+        self.fetch()
+    }
+    
     func showFavouriteRequested() {
         guard let favouriteHeroJson  = UserDefaults.standard.string(forKey: "FavoriteHeroJson") else{
             self.view.alert(title: "Error", message: "You don't have a favourite super hero yet.", completion: {})
@@ -39,20 +54,19 @@ extension HeroListingPresenter: HeroListingPresenterInterface{
     }
     
     func viewDidFinishLoading() {
-        //Ready to load some data
         self.fetch()
     }
     
     func fetch(){
         self.view.showLoading()
-        SuperHeroesService.fetchSuperHeroes(offset: offset, onCompletion: { (response, error) in
+        SuperHeroesService.fetchSuperHeroes(offset: offset, name: queryName, onCompletion: { (response, error) in
             DispatchQueue.main.async { [unowned self] in
                 self.view.hideLoading()
 
                 guard let response = response,
                     let data = response.data,
                     let results = data.results else{
-                        self.view.alert(title: "Whoops", message: "Could not load data. Please check your connection and try again.", completion: {})
+                        self.view.alert(title: "Whoops", message: "Could not load data.", completion: {})
                         return
                 }
                 

@@ -20,7 +20,7 @@ final class HeroListingViewController: UIViewController, UISearchControllerDeleg
     @IBOutlet weak var tableView: UITableView!
     
     private var heroes : [Hero] = []
-    
+    let searchController = UISearchController(searchResultsController: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,16 +28,15 @@ final class HeroListingViewController: UIViewController, UISearchControllerDeleg
         self.tableView.dataSource = self
         
         self.setupLoadingView()
+        self.setupSearchController()
         self.presenter.viewDidFinishLoading()
     }
-    
     
     func setupLoadingView(){
         self.loadingView = UIView(frame: self.view.frame)
         self.loadingView.backgroundColor = UIColor.white.withAlphaComponent(0.65)
         self.loadingView.center = self.view.center
         self.loadingView.isHidden = true
-        
         
         self.indicator = UIActivityIndicatorView(style: UIActivityIndicatorView.Style.large)
         
@@ -49,9 +48,19 @@ final class HeroListingViewController: UIViewController, UISearchControllerDeleg
         self.view.addSubview(loadingView)
     }
     
+    func setupSearchController(){
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Super Heroes"
+        navigationItem.searchController = searchController
+        searchController.searchBar.delegate = self
+
+        definesPresentationContext = true
+    }
+    
     @IBAction func loadMoreButtonPressed(_ sender: Any) {
         self.presenter.shouldLoadMore()
     }
+    
     @IBAction func showFavouriteButtonPressed(_ sender: Any) {
         self.presenter.showFavouriteRequested()
     }
@@ -117,5 +126,20 @@ extension HeroListingViewController : UITableViewDataSource, UITableViewDelegate
             return
         }
         self.showDetail(hero: hero)
+    }
+}
+
+extension HeroListingViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("search button click")
+        guard let text = searchBar.text else{
+            return
+        }
+        
+        self.presenter.shouldSearchWithQuery(name: text)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.presenter.searchQueryCanceled()
     }
 }
