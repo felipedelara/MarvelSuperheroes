@@ -18,6 +18,7 @@ enum ServiceError : Error{
 class SuperHeroesService{
     static func fetchSuperHeroes(offset: Int, name: String?, onCompletion : @escaping (SuperHeroesResponse?, ServiceError?) -> Void){
         let ts = Date().toMillis()
+        //Needs to be somewhere safer
         let apiKey = "fb620164db72040935834ad11d1529a7"
         let privateKey = "ff101cbd6fac69f3f260575202d3dcfa337e6264"
         
