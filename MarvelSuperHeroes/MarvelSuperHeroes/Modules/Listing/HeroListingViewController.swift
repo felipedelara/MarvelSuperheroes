@@ -20,7 +20,7 @@ final class HeroListingViewController: UIViewController, UISearchControllerDeleg
     @IBOutlet weak var tableView: UITableView!
     
     private var heroes : [Hero] = []
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ final class HeroListingViewController: UIViewController, UISearchControllerDeleg
         self.setupLoadingView()
         self.presenter.viewDidFinishLoading()
     }
-
+    
     
     func setupLoadingView(){
         self.loadingView = UIView(frame: self.view.frame)
@@ -52,15 +52,6 @@ final class HeroListingViewController: UIViewController, UISearchControllerDeleg
     @IBAction func loadMoreButtonPressed(_ sender: Any) {
         self.presenter.shouldLoadMore()
     }
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        print("segue")
-//        if segue.identifier == "HeroDetail"{
-//            guard let vc = segue.destination as? HeroDetailViewController else{
-//                return
-//            }
-//            vc.hero = self.heroes.first
-//        }
-//    }
 }
 
 extension HeroListingViewController : HeroListingViewInterface{
@@ -114,13 +105,11 @@ extension HeroListingViewController : UITableViewDataSource, UITableViewDelegate
         return cell
     }
     
-     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-         guard let hero = self.heroes[safe: indexPath.row],
-                   let heroName = hero.name else{
-                    return
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let hero = self.heroes[safe: indexPath.row] else{
+            return
         }
-        print(heroName)
         
-        self.showDetailViewController(HeroDetailViewController.create(hero: hero), sender: self)
+        self.showDetailViewController(HeroDetailsViewController.create(hero: hero), sender: self)
     }
 }

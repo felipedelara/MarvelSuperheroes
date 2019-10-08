@@ -28,7 +28,12 @@
 		E49600E7234A9D3F004F4C66 /* HeroListingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600E6234A9D3F004F4C66 /* HeroListingPresenter.swift */; };
 		E49600E9234AAC01004F4C66 /* HeroTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600E8234AAC01004F4C66 /* HeroTableViewCell.swift */; };
 		E49600EB234AB10D004F4C66 /* Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600EA234AB10D004F4C66 /* Collection.swift */; };
-		E49600EE234AD010004F4C66 /* HeroDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600ED234AD010004F4C66 /* HeroDetailViewController.swift */; };
+		E49600F1234C0674004F4C66 /* HeroDetailsInterfaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600EF234C066F004F4C66 /* HeroDetailsInterfaces.swift */; };
+		E49600F3234C067E004F4C66 /* HeroDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600F2234C067E004F4C66 /* HeroDetailsPresenter.swift */; };
+		E49600F5234C071E004F4C66 /* HeroDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600F4234C071E004F4C66 /* HeroDetailsViewModel.swift */; };
+		E49600F7234C0868004F4C66 /* HeroDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600F6234C0868004F4C66 /* HeroDetailsViewController.swift */; };
+		E49600F8234C08E5004F4C66 /* HeroDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600F6234C0868004F4C66 /* HeroDetailsViewController.swift */; };
+		E49600F9234C094C004F4C66 /* HeroDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E49600F2234C067E004F4C66 /* HeroDetailsPresenter.swift */; };
 		E49BD838234A953700C818E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E49BD837234A953700C818E5 /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +67,10 @@
 		E49600E6234A9D3F004F4C66 /* HeroListingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroListingPresenter.swift; sourceTree = "<group>"; };
 		E49600E8234AAC01004F4C66 /* HeroTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroTableViewCell.swift; sourceTree = "<group>"; };
 		E49600EA234AB10D004F4C66 /* Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.swift; sourceTree = "<group>"; };
-		E49600ED234AD010004F4C66 /* HeroDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailViewController.swift; sourceTree = "<group>"; };
+		E49600EF234C066F004F4C66 /* HeroDetailsInterfaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailsInterfaces.swift; sourceTree = "<group>"; };
+		E49600F2234C067E004F4C66 /* HeroDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailsPresenter.swift; sourceTree = "<group>"; };
+		E49600F4234C071E004F4C66 /* HeroDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailsViewModel.swift; sourceTree = "<group>"; };
+		E49600F6234C0868004F4C66 /* HeroDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroDetailsViewController.swift; sourceTree = "<group>"; };
 		E49BD837234A953700C818E5 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,7 +186,10 @@
 		E49600EC234ACFEC004F4C66 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				E49600ED234AD010004F4C66 /* HeroDetailViewController.swift */,
+				E49600EF234C066F004F4C66 /* HeroDetailsInterfaces.swift */,
+				E49600F6234C0868004F4C66 /* HeroDetailsViewController.swift */,
+				E49600F2234C067E004F4C66 /* HeroDetailsPresenter.swift */,
+				E49600F4234C071E004F4C66 /* HeroDetailsViewModel.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -285,16 +296,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E47EA669234A68090087C6F3 /* AppDelegate.swift in Sources */,
+				E49600F5234C071E004F4C66 /* HeroDetailsViewModel.swift in Sources */,
 				E47EA690234A69A70087C6F3 /* HeroListingViewController.swift in Sources */,
 				E47EA697234A7B4A0087C6F3 /* MD5Digest.swift in Sources */,
 				E49600EB234AB10D004F4C66 /* Collection.swift in Sources */,
 				E49600E9234AAC01004F4C66 /* HeroTableViewCell.swift in Sources */,
 				E47EA69A234A7CA40087C6F3 /* Date.swift in Sources */,
-				E49600EE234AD010004F4C66 /* HeroDetailViewController.swift in Sources */,
 				E47EA673234A68090087C6F3 /* MarvelSuperHeroes.xcdatamodeld in Sources */,
 				E47EA66B234A68090087C6F3 /* SceneDelegate.swift in Sources */,
 				E47EA692234A69E60087C6F3 /* HeroListingInterfaces.swift in Sources */,
+				E49600F1234C0674004F4C66 /* HeroDetailsInterfaces.swift in Sources */,
 				E47EA69D234A8E5E0087C6F3 /* SuperHeroesResponse.swift in Sources */,
+				E49600F3234C067E004F4C66 /* HeroDetailsPresenter.swift in Sources */,
+				E49600F7234C0868004F4C66 /* HeroDetailsViewController.swift in Sources */,
 				E47EA695234A70050087C6F3 /* SuperHeroesService.swift in Sources */,
 				E49600E7234A9D3F004F4C66 /* HeroListingPresenter.swift in Sources */,
 			);
@@ -304,11 +318,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E49600F9234C094C004F4C66 /* HeroDetailsPresenter.swift in Sources */,
 				E47EA69F234A8FB30087C6F3 /* MD5Digest.swift in Sources */,
 				E47EA6A1234A8FB80087C6F3 /* SuperHeroesResponse.swift in Sources */,
 				E47EA6A0234A8FB60087C6F3 /* SuperHeroesService.swift in Sources */,
 				E47EA683234A680C0087C6F3 /* MarvelSuperHeroesTests.swift in Sources */,
 				E47EA69B234A7E9F0087C6F3 /* Date.swift in Sources */,
+				E49600F8234C08E5004F4C66 /* HeroDetailsViewController.swift in Sources */,
 				E47EA6A3234A8FBE0087C6F3 /* HeroListingInterfaces.swift in Sources */,
 				E47EA6A2234A8FBC0087C6F3 /* HeroListingViewController.swift in Sources */,
 			);
