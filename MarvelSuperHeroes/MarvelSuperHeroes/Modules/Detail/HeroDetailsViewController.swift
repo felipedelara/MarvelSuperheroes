@@ -17,6 +17,7 @@ class HeroDetailsViewController: UIViewController {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var detailsTextView: UITextView!
+    @IBOutlet weak var favouriteButton: UIButton!
     
     
     static func create(hero: Hero) -> HeroDetailsViewController {
@@ -40,6 +41,9 @@ extension HeroDetailsViewController : HeroDetailsViewInterface{
     func updateViewWith(viewModel: HeroDetailViewModel) {
         self.nameLabel.text = viewModel.name
         self.detailsTextView.text = viewModel.details
+        if viewModel.isFavourite{
+            self.favouriteButton.isHidden = true
+        }
     }
     
     func alert(title: String, message: String, completion: @escaping () -> Void) {

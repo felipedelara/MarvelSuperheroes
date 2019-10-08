@@ -20,6 +20,20 @@ final class HeroListingPresenter{
 }
 
 extension HeroListingPresenter: HeroListingPresenterInterface{
+    func showFavouriteRequested() {
+        guard let favouriteHeroJson  = UserDefaults.standard.string(forKey: "FavoriteHeroJson") else{
+            self.view.alert(title: "Error", message: "You don't have a favourite super hero yet.", completion: {})
+            return
+        }
+        
+        guard let hero = try? Hero(favouriteHeroJson) else{
+            self.view.alert(title: "Error", message: "Could not load super hero.", completion: {})
+            return
+        }
+        
+        self.view.showDetail(hero: hero)
+    }
+    
     func shouldLoadMore() {
         self.fetch()
     }

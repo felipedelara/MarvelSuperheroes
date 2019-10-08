@@ -52,9 +52,16 @@ final class HeroListingViewController: UIViewController, UISearchControllerDeleg
     @IBAction func loadMoreButtonPressed(_ sender: Any) {
         self.presenter.shouldLoadMore()
     }
+    @IBAction func showFavouriteButtonPressed(_ sender: Any) {
+        self.presenter.showFavouriteRequested()
+    }
 }
 
 extension HeroListingViewController : HeroListingViewInterface{
+    func showDetail(hero: Hero) {
+        self.showDetailViewController(HeroDetailsViewController.create(hero: hero), sender: self)
+    }
+    
     func updateViewWithData(heroes: [Hero]) {
         self.heroes = heroes
         self.tableView.reloadData()
@@ -109,7 +116,6 @@ extension HeroListingViewController : UITableViewDataSource, UITableViewDelegate
         guard let hero = self.heroes[safe: indexPath.row] else{
             return
         }
-        
-        self.showDetailViewController(HeroDetailsViewController.create(hero: hero), sender: self)
+        self.showDetail(hero: hero)
     }
 }

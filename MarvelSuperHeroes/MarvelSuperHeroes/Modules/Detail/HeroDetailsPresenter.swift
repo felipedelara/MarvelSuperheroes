@@ -21,7 +21,10 @@ final class HeroDetailsPresenter{
 
 extension HeroDetailsPresenter : HeroDetailsPresenterInterface{
     func viewDidFinishLoading() {
-        let viewModel = HeroDetailViewModel(hero: hero)
+        let favouriteHeroId = UserDefaults.standard.integer(forKey: "FavoriteHeroId")
+        let isFavourite = favouriteHeroId == self.hero.id
+
+        let viewModel = HeroDetailViewModel(hero: hero, isFavourite: isFavourite)
         self.view.updateViewWith(viewModel: viewModel)
     }
     

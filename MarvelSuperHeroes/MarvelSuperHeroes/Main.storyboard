@@ -72,7 +72,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="tFW-za-vca"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Super Heroes" id="geH-Ov-zju"/>
+                    <navigationItem key="navigationItem" title="Super Heroes" id="geH-Ov-zju">
+                        <barButtonItem key="rightBarButtonItem" title="Show Favourite" image="star" catalog="system" style="plain" id="kdh-Vz-beH">
+                            <connections>
+                                <action selector="showFavouriteButtonPressed:" destination="C8Z-6U-RKo" id="csb-fS-6iu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO"/>
                     <connections>
                         <outlet property="tableView" destination="ac1-B8-lSS" id="p3G-ag-nvW"/>
@@ -106,7 +112,7 @@
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TtH-7M-KQZ">
                                 <rect key="frame" x="20" y="104" width="374" height="30"/>
-                                <state key="normal" title="Make favorite"/>
+                                <state key="normal" title="Mark as favourite"/>
                                 <connections>
                                     <action selector="makeFavoriteButtonPressed:" destination="KTU-kJ-1OU" eventType="touchUpInside" id="Ysf-xz-Bw7"/>
                                 </connections>
@@ -129,6 +135,7 @@
                     </view>
                     <connections>
                         <outlet property="detailsTextView" destination="PwA-cL-soc" id="9Tt-em-zk0"/>
+                        <outlet property="favouriteButton" destination="TtH-7M-KQZ" id="M9z-1Q-AcH"/>
                         <outlet property="nameLabel" destination="PZD-uK-QbY" id="Fka-Bz-ufY"/>
                     </connections>
                 </viewController>
@@ -155,4 +162,7 @@
             <point key="canvasLocation" x="-465.21739130434787" y="12.723214285714285"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star" catalog="system" width="64" height="58"/>
+    </resources>
 </document>

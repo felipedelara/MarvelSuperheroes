@@ -13,7 +13,7 @@ struct HeroDetailViewModel{
     let details: String
     let isFavourite: Bool
     
-    init(hero: Hero) {
+    init(hero: Hero, isFavourite:Bool) {
         self.name = hero.name ?? "no name"
         
         var _details = ""
@@ -32,7 +32,7 @@ struct HeroDetailViewModel{
         }
         self.details = _details
         
-        self.isFavourite = false
+        self.isFavourite = isFavourite
     }
     
     static func listFirst3(appearances : Appearances) -> String{
